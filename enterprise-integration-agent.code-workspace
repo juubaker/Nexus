@@ -1,0 +1,122 @@
+{
+  "folders": [
+    { "path": ".", "name": "🏠 Root" },
+    { "path": "frontend", "name": "⚛️  Frontend (React + Vite)" },
+    { "path": "backend", "name": "🟢 Backend (Node + Express)" }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.rulers": [100],
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true
+    },
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#0C1019",
+      "titleBar.activeForeground": "#00D4FF",
+      "statusBar.background": "#080B12",
+      "statusBar.foreground": "#94A3B8",
+      "activityBar.background": "#080B12"
+    },
+    "editor.tokenColorCustomizations": {
+      "comments": "#3A5A6A"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "bradlc.vscode-tailwindcss",
+      "ms-vscode.vscode-typescript-next",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.path-intellisense",
+      "eamodio.gitlens",
+      "ms-azuretools.vscode-docker",
+      "humao.rest-client",
+      "gruntfuggly.todo-tree",
+      "wayou.vscode-todo-highlight"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "compounds": [
+      {
+        "name": "🚀 Full Stack",
+        "configurations": ["Backend Dev Server", "Frontend Dev Server"],
+        "stopAll": true,
+        "presentation": { "group": "compound", "order": 1 }
+      }
+    ],
+    "configurations": [
+      {
+        "name": "Backend Dev Server",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "dev"],
+        "cwd": "${workspaceFolder}/backend",
+        "console": "integratedTerminal",
+        "env": { "NODE_ENV": "development" },
+        "presentation": { "group": "servers", "order": 1 }
+      },
+      {
+        "name": "Frontend Dev Server",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "dev"],
+        "cwd": "${workspaceFolder}/frontend",
+        "console": "integratedTerminal",
+        "presentation": { "group": "servers", "order": 2 }
+      },
+      {
+        "name": "Backend Tests",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "test"],
+        "cwd": "${workspaceFolder}/backend",
+        "console": "integratedTerminal",
+        "presentation": { "group": "tests", "order": 1 }
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Install All Dependencies",
+        "type": "shell",
+        "command": "cd backend && npm install && cd ../frontend && npm install",
+        "group": "build",
+        "presentation": { "reveal": "always", "panel": "new" }
+      },
+      {
+        "label": "Start Backend",
+        "type": "shell",
+        "command": "npm run dev",
+        "options": { "cwd": "${workspaceFolder}/backend" },
+        "group": "build",
+        "presentation": { "reveal": "always", "panel": "dedicated" }
+      },
+      {
+        "label": "Start Frontend",
+        "type": "shell",
+        "command": "npm run dev",
+        "options": { "cwd": "${workspaceFolder}/frontend" },
+        "group": "build",
+        "presentation": { "reveal": "always", "panel": "dedicated" }
+      }
+    ]
+  }
+}
